@@ -2,3 +2,20 @@ header {
     text-align: center;
     font-size: 25px;
 }
+#prénomEtScore > div > h2 {
+    padding: 1%;
+}
+#prénomEtScore > p {
+    margin-bottom: 0%;
+}
+#score {
+    border: solid;
+    border-radius: 10px;
+}
+#prénomEtScore {
+    margin-inline: 20%;
+}
+#prénomEtScore > div {
+    display: flex;
+    justify-content: space-between;
+}
