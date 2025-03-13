@@ -25,3 +25,6 @@ header {
 .mauvaiseRéponse {
     background-color: red;
 }
+.toggleDiv {
+    display: none;
+}

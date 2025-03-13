@@ -148,6 +148,10 @@ for (let index = 0; index < 5; index++) {
                     h3[index].classList.toggle('mauvaiseRéponse')
                 }
             }
+            let toutLesToggleDiv = sectionQuestion.querySelectorAll('.toggleDiv')
+            toutLesToggleDiv[0].classList.remove('toggleDiv')
         })
     }) 
 }
+let premierToggleDiv = sectionQuestion.querySelector('.toggleDiv')
+premierToggleDiv.classList.remove('toggleDiv')
