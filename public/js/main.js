@@ -97,6 +97,7 @@ let réponsesD = [
 let listeNombre = []
 let listeABCD = []
 let score = 0
+let on = true
 do {
     prénom = prompt("Entrez votre prénom (Entre 3 et 10 lettres)")
 } while ( prénom == null||prénom.length < 3 || prénom.length > 10);
@@ -149,7 +150,27 @@ for (let index = 0; index < 5; index++) {
                 }
             }
             let toutLesToggleDiv = sectionQuestion.querySelectorAll('.toggleDiv')
-            toutLesToggleDiv[0].classList.remove('toggleDiv')
+            if (toutLesToggleDiv.length > 0) {
+                toutLesToggleDiv[0].classList.remove('toggleDiv')    
+            }
+            
+            if ((h3[4].innerText === 'FAUX!' || h3[4].innerText === 'Bravo') && on) { 
+                on = false
+                boutonFinale = document.createElement('button')
+                boutonFinale.textContent = 'Afficher résultat'
+                sectionQuestion.appendChild(boutonFinale)
+                boutonFinale.addEventListener('click', () => {
+                    if (5/score == 1) {
+                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Excellent</h3>'
+                    }else if (5/score >= 0.5 ) {
+                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Peut mieux faire</h3>'
+                    }else if (5/score < 0.5) {
+                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Presque la moitié, vous pouvez le faire</h3>'
+                    }else if (5/score == 0) {
+                        sectionQuestion.innerHTML = '<h2>'+score+'/5</h2><h3>Nul!!!</h3>'
+                    }
+                })
+            }
         })
     }) 
 }
