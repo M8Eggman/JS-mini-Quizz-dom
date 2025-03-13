@@ -103,45 +103,51 @@ do {
 
 let sectionPrénom = document.querySelector('#prénomEtScore')
 sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id="score">Ton score: '+score+'</h2></div>'
-
 let sectionQuestion = document.querySelector('#questions')
-let nombreQuestion = questionAléatoire()
-sectionQuestion.innerHTML = '<div><h3>'+questions[nombreQuestion]+'</h3></div><div class="réponses"></div>'
-let h3 = sectionQuestion.querySelectorAll('h3')
-let divRéponses = sectionQuestion.querySelector('.réponses')
-for (let index = 0; index < 4; index++) {
-    let choixRéponseAléatoire = réponseAléatoire()
-    if (choixRéponseAléatoire === 0) {
-        bouton1 = document.createElement('button')
-        bouton1.textContent = réponsesA[nombreQuestion]
-        divRéponses.appendChild(bouton1)
-    } else if (choixRéponseAléatoire === 1) {
-        bouton2 = document.createElement('button')
-        bouton2.textContent = réponsesB[nombreQuestion]
-        divRéponses.appendChild(bouton2)
-    } else if (choixRéponseAléatoire === 2) {
-        bouton3 = document.createElement('button')
-        bouton3.textContent = réponsesC[nombreQuestion]
-        divRéponses.appendChild(bouton3)
-    } else if (choixRéponseAléatoire === 3) {
-        bouton4 = document.createElement('button')
-        bouton4.textContent = réponsesD[nombreQuestion]
-        divRéponses.appendChild(bouton4)
+
+for (let index = 0; index < 5; index++) {
+    let nombreQuestion = questionAléatoire()
+    newDiv = document.createElement('div') 
+    newDiv.classList.add('toggleDiv')
+    newDiv.innerHTML = '<div><h3>'+(index+1)+'.'+questions[nombreQuestion]+'</h3></div><div class="réponses"></div>'
+    sectionQuestion.appendChild(newDiv)
+    let h3 = sectionQuestion.querySelectorAll('h3')
+    let divRéponses = sectionQuestion.querySelectorAll('.réponses')
+    listeABCD = []
+    for (let index2 = 0; index2 < 4; index2++) {
+        let choixRéponseAléatoire = réponseAléatoire()
+        if (choixRéponseAléatoire === 0) {
+            bouton1 = document.createElement('button')
+            bouton1.textContent = réponsesA[nombreQuestion]
+            divRéponses[index].appendChild(bouton1)
+        } else if (choixRéponseAléatoire === 1) {
+            bouton2 = document.createElement('button')
+            bouton2.textContent = réponsesB[nombreQuestion]
+            divRéponses[index].appendChild(bouton2)
+        } else if (choixRéponseAléatoire === 2) {
+            bouton3 = document.createElement('button')
+            bouton3.textContent = réponsesC[nombreQuestion]
+            divRéponses[index].appendChild(bouton3)
+        } else if (choixRéponseAléatoire === 3) {
+            bouton4 = document.createElement('button')
+            bouton4.textContent = réponsesD[nombreQuestion]
+            divRéponses[index].appendChild(bouton4)
+        }
     }
-}
-let boutons = sectionQuestion.querySelectorAll('button')
-boutons.forEach(bouton => {
-    bouton.addEventListener('click', () => {
-        if (! (h3[0].innerText === 'FAUX!' || h3[0].innerText === 'Bravo')) {
-            if (réponsesA.includes(bouton.innerText)) {
-                score += 1
-                sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id="score">Ton score: '+score+'</h2></div>'
-                h3[0].innerText = 'Bravo'
-                h3[0].classList.toggle('bonneRéponse')
-            } else {
-                h3[0].innerText = 'FAUX!'
-                h3[0].classList.toggle('mauvaiseRéponse')
+    let boutons = divRéponses[index].querySelectorAll('button')
+    boutons.forEach(bouton => {
+        bouton.addEventListener('click', () => {
+            if (! (h3[index].innerText === 'FAUX!' || h3[index].innerText === 'Bravo')) {
+                if (réponsesA.includes(bouton.innerText)) {
+                    score += 1
+                    sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id="score">Ton score: '+score+'</h2></div>'
+                    h3[index].innerText = 'Bravo'
+                    h3[index].classList.toggle('bonneRéponse')
+                } else {
+                    h3[index].innerText = 'FAUX!'
+                    h3[index].classList.toggle('mauvaiseRéponse')
+                }
             }
-        } 
-    })
-})
+        })
+    }) 
+}
