@@ -103,3 +103,20 @@ do {
 
 let sectionPrénom = document.querySelector('#prénomEtScore')
 sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id="score">Ton score: '+score+'</h2></div>'
+
+nombreQuestion = questionAléatoire()
+
+let sectionQuestion = document.querySelector('#questions')
+sectionQuestion.innerHTML = '<h3>'+questions[nombreQuestion]+'</h3>'
+choixRéponseAléatoire = réponseAléatoire()
+for (let index = 0; index < 4; index++) {
+    if (choixRéponseAléatoire === 0) {
+        réponsesA[nombreQuestion]
+    } else if (choixRéponseAléatoire === 1) {
+        réponsesB[nombreQuestion]
+    } else if (choixRéponseAléatoire === 2) {
+        réponsesC[nombreQuestion]
+    } else if (choixRéponseAléatoire === 3) {
+        réponsesD[nombreQuestion]
+    }
+}
