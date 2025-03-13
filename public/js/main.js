@@ -152,14 +152,14 @@ for (let index = 0; index < 5; index++) {
                 boutonFinale.textContent = 'Afficher résultat'
                 sectionQuestion.appendChild(boutonFinale)
                 boutonFinale.addEventListener('click', () => {
-                    if (5/score == 1) {
-                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Excellent</h3>'
-                    }else if (5/score >= 0.5 ) {
-                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Peut mieux faire</h3>'
-                    }else if (5/score < 0.5) {
-                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Presque la moitié, vous pouvez le faire</h3>'
-                    }else if (5/score == 0) {
+                    if (5-score === 0) {
+                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Excellent mais ne prend pas la grosse tête</h3>'
+                    }else if (5-score === 5) {
                         sectionQuestion.innerHTML = '<h2>'+score+'/5</h2><h3>Nul!!!</h3>'
+                    }else if (5-score < 3) {
+                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Peut mieux faire</h3>'
+                    }else if (5-score >= 3 ) {
+                        sectionQuestion.innerHTML = '<h2>'+score+'/5<h3>Plus proche du 0 que du 5</h3>'
                     }
                 })
             }
