@@ -104,19 +104,27 @@ do {
 let sectionPrénom = document.querySelector('#prénomEtScore')
 sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id="score">Ton score: '+score+'</h2></div>'
 
-nombreQuestion = questionAléatoire()
-
+let nombreQuestion = questionAléatoire()
 let sectionQuestion = document.querySelector('#questions')
-sectionQuestion.innerHTML = '<h3>'+questions[nombreQuestion]+'</h3>'
-choixRéponseAléatoire = réponseAléatoire()
+sectionQuestion.innerHTML = '<div><h3>'+questions[nombreQuestion]+'</h3></div><div class="réponses"></div>'
+let divRéponses = sectionQuestion.querySelector('.réponses')
 for (let index = 0; index < 4; index++) {
+    let choixRéponseAléatoire = réponseAléatoire()
     if (choixRéponseAléatoire === 0) {
-        réponsesA[nombreQuestion]
+        bouton1 = document.createElement('button')
+        bouton1.textContent = réponsesA[nombreQuestion]
+        divRéponses.appendChild(bouton1)
     } else if (choixRéponseAléatoire === 1) {
-        réponsesB[nombreQuestion]
+        bouton2 = document.createElement('button')
+        bouton2.textContent = réponsesB[nombreQuestion]
+        divRéponses.appendChild(bouton2)
     } else if (choixRéponseAléatoire === 2) {
-        réponsesC[nombreQuestion]
+        bouton3 = document.createElement('button')
+        bouton3.textContent = réponsesC[nombreQuestion]
+        divRéponses.appendChild(bouton3)
     } else if (choixRéponseAléatoire === 3) {
-        réponsesD[nombreQuestion]
+        bouton4 = document.createElement('button')
+        bouton4.textContent = réponsesD[nombreQuestion]
+        divRéponses.appendChild(bouton4)
     }
 }
