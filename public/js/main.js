@@ -104,9 +104,10 @@ do {
 let sectionPrénom = document.querySelector('#prénomEtScore')
 sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id="score">Ton score: '+score+'</h2></div>'
 
-let nombreQuestion = questionAléatoire()
 let sectionQuestion = document.querySelector('#questions')
+let nombreQuestion = questionAléatoire()
 sectionQuestion.innerHTML = '<div><h3>'+questions[nombreQuestion]+'</h3></div><div class="réponses"></div>'
+let h3 = sectionQuestion.querySelectorAll('h3')
 let divRéponses = sectionQuestion.querySelector('.réponses')
 for (let index = 0; index < 4; index++) {
     let choixRéponseAléatoire = réponseAléatoire()
@@ -128,3 +129,19 @@ for (let index = 0; index < 4; index++) {
         divRéponses.appendChild(bouton4)
     }
 }
+let boutons = sectionQuestion.querySelectorAll('button')
+boutons.forEach(bouton => {
+    bouton.addEventListener('click', () => {
+        if (! (h3[0].innerText === 'FAUX!' || h3[0].innerText === 'Bravo')) {
+            if (réponsesA.includes(bouton.innerText)) {
+                score += 1
+                sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id="score">Ton score: '+score+'</h2></div>'
+                h3[0].innerText = 'Bravo'
+                h3[0].classList.toggle('bonneRéponse')
+            } else {
+                h3[0].innerText = 'FAUX!'
+                h3[0].classList.toggle('mauvaiseRéponse')
+            }
+        } 
+    })
+})

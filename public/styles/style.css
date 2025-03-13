@@ -19,3 +19,9 @@ header {
     display: flex;
     justify-content: space-between;
 }
+.bonneRéponse {
+    background-color: green;
+}
+.mauvaiseRéponse {
+    background-color: red;
+}
