@@ -1,19 +1,3 @@
-function questionAléatoire() {
-    //cherche un nombre jusqu'a qu'il ne soit pas dans la liste
-    do {
-        question = Math.floor(Math.random()*questions.length)
-    } while (listeNombre.includes(question))
-    listeNombre.push(question)
-    return question
-}
-function réponseAléatoire() {
-    //cherche un nombre jusqu'a qu'il ne soit pas dans la liste
-    do {
-        réponseABCD = Math.floor(Math.random()*4)
-    } while (listeABCD.includes(réponseABCD))
-    listeABCD.push(réponseABCD)
-    return réponseABCD
-}
 let questions = [
     'Quel est le personnage principal de "Naruto" ?',
     'Quel est le nom du robot géant dans "Neon Genesis Evangelion" ?',
@@ -107,7 +91,11 @@ sectionPrénom.innerHTML ='<p>Bienvenue</p>'+'<div><h2>'+prénom+'</h2>'+'<h2 id
 let sectionQuestion = document.querySelector('#questions')
 
 for (let index = 0; index < 5; index++) {
-    let nombreQuestion = questionAléatoire()
+    //génère un nombre jusqu'a qu'il ne soit pas dans la liste
+    do {
+        nombreQuestion = Math.floor(Math.random()*questions.length)
+    } while (listeNombre.includes(nombreQuestion))
+    listeNombre.push(nombreQuestion)
     newDiv = document.createElement('div') 
     newDiv.classList.add('toggleDiv')
     newDiv.innerHTML = '<div><h3>'+(index+1)+'.'+questions[nombreQuestion]+'</h3></div><div class="réponses"></div>'
@@ -116,7 +104,11 @@ for (let index = 0; index < 5; index++) {
     let divRéponses = sectionQuestion.querySelectorAll('.réponses')
     listeABCD = []
     for (let index2 = 0; index2 < 4; index2++) {
-        let choixRéponseAléatoire = réponseAléatoire()
+        //génère un nombre jusqu'a qu'il ne soit pas dans la liste
+        do {
+            choixRéponseAléatoire = Math.floor(Math.random()*4)
+        } while (listeABCD.includes(choixRéponseAléatoire))
+        listeABCD.push(choixRéponseAléatoire)
         if (choixRéponseAléatoire === 0) {
             bouton1 = document.createElement('button')
             bouton1.textContent = réponsesA[nombreQuestion]
